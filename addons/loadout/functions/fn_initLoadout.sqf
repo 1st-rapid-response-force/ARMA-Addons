@@ -34,10 +34,12 @@ if (local _player) then {
         removeGoggles _player;
 
         // Lookup the Primary Weapon System
-        _primaryWeapon = ("rrf_loadouts" callExtension "getPrimaryWeapon");
-        systemChat (str _primaryWeapon);
-        systemChat (str _player);
-        _player addWeapon _primaryWeapon;
+        _primaryWeapons = ("rrf_loadouts" callExtension "getPrimaryWeapon") splitString " ";
+        _player addWeapon (_primaryWeapons select 0);
+
+        // Lookup the Secondary Weapon System
+        _secondaryWeapon = ("rrf_loadouts" callExtension "getSecondaryWeapon");
+        _player addWeapon _secondaryWeapon;
 
     };
 
